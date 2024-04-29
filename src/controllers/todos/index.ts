@@ -10,6 +10,19 @@ const getTodos = async (req: Request, res: Response): Promise<void> => {
     throw error
   }
 }
+const viewTodo = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const {params : { id }} = req
+    const todo : ITodo | null = await Todo.findById(
+      {_id: id}
+    )
+    res.status(200).json({
+      todo:todo
+    })
+  } catch (error) {
+    throw error
+  }
+}
 const addTodo = async (req: Request, res: Response): Promise<void> => {
   try {
     const body = req.body as Pick<ITodo, "name" | "description" | "status">
@@ -38,9 +51,12 @@ const updateTodo = async (req: Request, res: Response): Promise<void> => {
       { _id: id },
       body
     )
+    const todo : ITodo | null = await Todo.findById(
+      { _id: id}
+    )
     res.status(200).json({
       message: "Todo updated",
-      todo: updateTodo,
+      todo: todo,
     })
   } catch (error) {
     throw error
@@ -60,4 +76,4 @@ const deleteTodo = async (req: Request, res: Response): Promise<void> => {
   }
 }
 
-export { getTodos, addTodo, updateTodo, deleteTodo }
+export { getTodos, viewTodo, addTodo, updateTodo, deleteTodo }

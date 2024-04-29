@@ -4,8 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build": "tsc",
-    "start": "concurrently \"tsc -w\" \"nodemon dist/js/app.js\""
+    "dev": "nodemon --config nodemon.json src/app.ts"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +22,7 @@
     "@types/mongoose": "^5.11.97",
     "@types/node": "^20.12.7",
     "concurrently": "^8.2.2",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2"
   }
 }

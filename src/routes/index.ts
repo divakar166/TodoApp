@@ -1,9 +1,11 @@
 import { Router } from "express"
-import { getTodos, addTodo, updateTodo, deleteTodo } from "../controllers/todos"
+import { getTodos, addTodo, updateTodo, deleteTodo, viewTodo } from "../controllers/todos"
 
 const router: Router = Router()
 
 router.get("/todos", getTodos)
+
+router.post("/todo/:id", viewTodo)
 
 router.post("/add-todo", addTodo)
 
